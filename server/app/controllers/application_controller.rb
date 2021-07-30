@@ -1,6 +1,18 @@
 class ApplicationController < ActionController::API
   before_action :authorized
 
+  #SAMPLE
+# >  payload = { beef: 'steak' }
+
+# > jwt = JWT.encode(payload, 'boeuf')
+# => "eyJhbGciOiJIUzI1NiJ9.eyJiZWVmIjoic3RlYWsifQ._IBTHTLGX35ZJWTCcY30tLmwU9arwdpNVxtVU0NpAuI"
+
+# > decoded_hash = JWT.decode(jwt, 'boeuf')
+# => [{"beef"=>"steak"}, {"alg"=>"HS256"}]
+
+# > data = decoded_hash[0]
+# => {"beef"=>"steak"} 
+
   def encode_token(payload) #{ user_id: 2 }
     JWT.encode(payload, 'my_s3cr3t') #issue a token, store payload in token
   end
